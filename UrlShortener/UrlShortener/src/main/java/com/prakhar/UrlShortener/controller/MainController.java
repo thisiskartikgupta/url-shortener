@@ -19,14 +19,14 @@ public class MainController {
         return new ResponseEntity<>("Hello", HttpStatus.OK);
     }
 
-    @GetMapping("/shorten/get")
+    @GetMapping("/shorten")
     public ResponseEntity<String> getShortenedURL(@RequestParam("url") String url) {
         String key = urlService.shortenURL(url);
         return new ResponseEntity<>(key, HttpStatus.OK);
     }
 
 
-    @GetMapping("/original/get")
+    @GetMapping("/original")
     public ResponseEntity<String> getOriginalURL(@RequestParam("url") String url) {
         String originalURL = urlService.getOriginalURL(url);
 
