@@ -1,0 +1,36 @@
+.body{
+    padding-top:10%;
+    background-color:black;
+
+}
+.vis{
+    display:flex;
+    justify-content : center;
+}
+.hidden{
+    padding-top:10%;
+    display:flex;
+    justify-content : center;
+}
+.unhidden{
+    color:white;
+}
+.input{
+    border : 2px white solid;
+    background-color:black;
+    color:white;
+    border-radius:15px;
+    text-align:center;
+}
+.input:hover {
+    border: 2px yellow solid;
+}
+.go:hover {
+    border: 2px yellow solid;
+}
+.go{
+    cursor: pointer;
+    border: 1px solid grey;
+    color:grey;
+    background-color:black;
+}
