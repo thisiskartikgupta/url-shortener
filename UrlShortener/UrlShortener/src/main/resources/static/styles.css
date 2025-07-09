@@ -1,21 +1,44 @@
+body{
+    margin:0px;
+}
 .body{
-    padding-top:10%;
+    padding-top:10px;
+    padding-left:10px;
+    border-right:10px green solid;
+    border-top:10px green solid;
     background-color:black;
-
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+.left-border {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100vh;
+    background-color: blue;
+    z-index: 1000;
 }
 .vis{
     display:flex;
     justify-content : center;
 }
+.hid-txt{
+    padding-top:17px;
+    display:flex;
+    justify-content : center;
+}
 .hidden{
-    padding-top:10%;
+    padding-top:10px;
     display:flex;
     justify-content : center;
 }
 .unhidden{
-    color:white;
+    color:green;
 }
 .input{
+    width:80%;
     border : 2px white solid;
     background-color:black;
     color:white;
@@ -34,3 +57,22 @@
     color:grey;
     background-color:black;
 }
+.all:hover {
+    border: 2px yellow solid;
+}
+.all{
+    cursor: pointer;
+    border: 1px solid grey;
+    color:grey;
+    background-color:black;
+}
+.alldone{
+    color:black;
+}
+.list{
+    font-size:0.9em;
+}
+.showlist{
+    color:white;
+}
+

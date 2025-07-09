@@ -1,40 +1,43 @@
 package com.prakhar.UrlShortener.controller;
 
+import com.prakhar.UrlShortener.service.URLManagementService;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.UUID;
+import java.io.IOException;
 
 @RestController
-
 public class MainController {
-    static HashMap<String,String> map=new HashMap<>();
-    static HashMap<String,String> revmap=new HashMap<>();
+
+    @Autowired
+    private URLManagementService urlService;
+
     @GetMapping("/hello")
-    public String greet(){
-        return "Hello";
+    public ResponseEntity<String> greet() {
+        return new ResponseEntity<>("Hello", HttpStatus.OK);
     }
-    @GetMapping("/geturl")
-    public String geturl(){
-        return "asf";
+
+    @GetMapping("/shorten")
+    public ResponseEntity<String> getShortenedURL(@RequestParam("url") String url) {
+        String key = urlService.shortenURL(url);
+        return new ResponseEntity<>(key, HttpStatus.OK);
     }
-    @GetMapping("/bigurl")
-    public String bigurl(@RequestParam("bigurl") String big){
-        if (revmap.containsKey(big))
-            return revmap.get(big);
-        String key=UUID.randomUUID().toString();
-        map.put(key,big);
-        revmap.put(big,key);
-        return key;
+
+
+    @GetMapping("/original")
+    public void getOriginalURL(@RequestParam("url") String url, HttpServletResponse response) throws IOException {
+        String originalURL = urlService.getOriginalURL(url);
+        response.sendRedirect(originalURL);
     }
-    @GetMapping("/smallurl")
-    public String smallurl(@RequestParam("smallurl") String small){
-        return map.getOrDefault(small, "INVALID URL !");
-    }
+
     @GetMapping("/all")
-    public Object all(){
-        return map;
+    public ResponseEntity<?> getAllURL() {
+        return new ResponseEntity<>(urlService.getAllUrls(), HttpStatus.OK);
     }
 }
